@@ -1,5 +1,6 @@
 const Product = require('../models/Product')
 const mongoose = require('mongoose')
+
 module.exports.get_all_products = async (req, res) => {
     await Product.find().then(e => {
         return res.json(e)

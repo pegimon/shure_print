@@ -1,11 +1,11 @@
-const categoryController = require('../../controllers/category.controller')
+const reviewsController = require('../../controllers/reviews.controller')
 const Router = require('express').Router
 const router = Router()
 
-router.get('/', categoryController.get_all_reviews)
-router.get('/:_id', categoryController.get_reviews_by_id)
-router.post('/', categoryController.add_reviews)
-router.put('/:_id', categoryController.update_reviews)
-router.delete('/:_id', categoryController.delete_reviews)
+router.get('/', reviewsController.get_all_reviews)
+router.get('/:_id', reviewsController.get_reviews_by_id)
+router.post('/', reviewsController.add_reviews)
+router.put('/:_id', reviewsController.update_reviews)
+router.delete('/:_id', reviewsController.delete_reviews)
 
 module.exports = router

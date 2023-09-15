@@ -8,6 +8,7 @@ module.exports.get_all_categories = async (req, res) => {
         return res.json(e)
     }).catch(err => {
         console.log(err.message)
+        return res.status(403).json({error:err.message})
     })
 }
 
@@ -53,16 +54,16 @@ module.exports.delete_category = async (req, res) => {
     if(!isthere){
         return res.status(404).json("category already not in the database")
     }
-    await Product.deleteMany(_id).then(e => {
-        return res.status(200).json("Products deleted")
+    await Product.deleteMany({category_id:_id}).then(e => {
+       console.log("Products deleted")
     }).catch(err => {
         console.log(err)
-        res.status(401).json({error:err.message})
+        return res.status(401).json({error:err.message})
     })
     await Category.findByIdAndDelete(_id).then(e => {
         return res.status(200).json("Category deleted")
     }).catch(err => {
         console.log(err)
-        res.status(401).json({error:err.message})
+        return res.status(401).json({error:err.message})
     })
 }

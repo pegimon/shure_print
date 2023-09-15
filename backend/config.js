@@ -3,5 +3,7 @@ const config = process.env
 
 module.exports = {
     mongo_url : config.MONGO_URL,
-    port : config.PORT
+    port : config.PORT,
+    password:config.PASSWORD,
+    salt:config.SALT
 }

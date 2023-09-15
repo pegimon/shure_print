@@ -1,0 +1,2 @@
+MONGO_URL; // mongo database url
+PORT; //port number

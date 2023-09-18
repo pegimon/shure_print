@@ -37,11 +37,13 @@ module.exports.login = async (req, res, next) => {
             return res.json("email not found please signup")
         }else {
             const iseq = bcrypt.compareSync(`${password}${config.password}`, e[0].password)
+            e[0].password = undefined
+            const user = {id: e[0]._id, name: e[0].name, email:e[0].email}
+            const token = jwt.sign(user, config.password, {expiresIn: '720h'})
             if(!iseq){
                 return res.json("passowrd incorrect")
             }else {
-                e[0].password = undefined
-                return res.status(200).json(e[0])
+                return res.status(200).json({...e[0], token})
             }
         }
     })
